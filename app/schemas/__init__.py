@@ -1,1 +1,1 @@
-from app.schemas.test import *
+from app.schemas.auth import *

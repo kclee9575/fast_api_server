@@ -1,10 +1,10 @@
-from app.services.test_handler import TestHandler
+from app.services.auth_handler import AuthHandler
 from app.common.logger import logger
 
 
 class BaseController:
     def __init__(self):
-        self._test_handler = TestHandler()
+        self._test_handler = AuthHandler()
         
         self._logger = logger
 

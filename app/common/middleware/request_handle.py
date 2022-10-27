@@ -13,13 +13,12 @@ from starlette.status import (
 )
 from datetime import datetime
 from app.common.logger import access_logger
-from app.utils.auth import auth_manager
 
 class RequestHandlingMiddleware(BaseHTTPMiddleware):
     async def dispatch(
         self, request: Request, call_next: RequestResponseEndpoint
     ) -> Response:
-        if request.url.path in ["/docs", "/redoc", "/openapi.json",  "/token"]:
+        if request.url.path in ["/docs", "/redoc", "/openapi.json", "/", "/token"]:
             result = await call_next(request)
             return result
         process_time = None
@@ -28,7 +27,7 @@ class RequestHandlingMiddleware(BaseHTTPMiddleware):
 
         try:
             authorize = await self.authorize(request)
-            print(authorize)
+
             if authorize == 200:
                 response = await call_next(request)
                 access_logger.info(
@@ -53,11 +52,11 @@ class RequestHandlingMiddleware(BaseHTTPMiddleware):
         # auth 서버로부터 jwt 토큰 발급, 사용 시 decode/
         # 만료기간이 지난경우 사용불가/
         # 사용가능한 경우 decode code format에 맞춰 사용
-        if not request.headers.get('authorization'):
-            return 501 # unauthorization
-        token = request.headers.get('authorization').replace("Bearer " , "")
+        #if not request.headers.get('authorization'):
+            #return 501 # unauthorization
+        #token = request.headers.get('authorization').replace("Bearer " , "")
         # decode_data 로 필요에따라 사용
-        decode_data = auth_manager.decode_jwt(token)    
+        #decode_data = auth_manager.decode_jwt(token)    
         return 200
 
     def _render_4xx_error(self, status_code, start_time):

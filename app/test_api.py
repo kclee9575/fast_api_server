@@ -17,7 +17,6 @@ from app.utils.timestamp import timestamp
 def create_app():
     PROJECT_NAME = f"Neubility-{define.SERVER_NAME.capitalize()}-Server"
     app = FastAPI(title=PROJECT_NAME)
-
     database.init_app(app)
 
     app.add_middleware(RequestHandlingMiddleware)
@@ -43,6 +42,7 @@ app = create_app()
 
 @app.get("/", include_in_schema=False)
 async def index():
+    print("aa")
     return Response(
-        f"Neubility {define.SERVER_NAME.upper()} ( {timestamp.get_current_time()} )"
+        f"Test {define.SERVER_NAME.upper()} ( {timestamp.get_current_time()} )"
     )
