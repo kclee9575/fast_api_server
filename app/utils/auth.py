@@ -5,17 +5,19 @@ from datetime import datetime, timedelta
 from typing import Union, Any
 
 class AuthManager:
+    JWT_SECRET_KEY ="test_jwt_key_value"  # scret_key # os.environ['JWT_SECRET_KEY']
+    JWT_REFRESH_SECRET_KEY = "test_jwt_refresh_key_value" # refresh sceret_key # os.environ['JWT_REFRESH_SECRET_KEY']
+    ALGORITHM = "HS256"
+
     def __init__(self):
         self.ACCESS_TOKEN_EXPIRE_MINUTES = 30  # 30 minutes
         self.REFRESH_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 day
-        self.ALGORITHM = "HS256"
-        self.JWT_SECRET_KEY ="test_jwt_key_value"  # scret_key # os.environ['JWT_SECRET_KEY']
-        self.JWT_REFRESH_SECRET_KEY = "test_jwt_refresh_key_value" # refresh sceret_key # os.environ['JWT_REFRESH_SECRET_KEY']
+        
         self.password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     def decode_jwt(self, token: str):
         return jwt.decode(
-            token, self.JWT_REFRESH_SECRET_KEY, algorithms=[self.ALGORITHM]
+            token, self.JWT_SECRET_KEY, algorithms=[self.ALGORITHM]
         )
 
     def get_hashed_password(self, password: str) -> str:

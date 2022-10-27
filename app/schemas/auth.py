@@ -13,3 +13,7 @@ class UserOut(BaseModel):
 class UserResponse(BaseModel):
     user_id : str
     password : str
+
+class TokenSchema(BaseModel):
+    access_token: str
+    refresh_token: str

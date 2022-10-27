@@ -24,13 +24,13 @@ class AuthRepository(BaseRepository[User, UserCreate, UserUpdate]):
 
     
 
-    async def get_user_info(self, request):
+    async def get_user_info(self, user_id):
         # 임시값 반환
         user = None
-        if request.user_id == "test":
+        if user_id == "test":
             user = User()
             user.user_id = "test"
-            user.password = "test"
+            user.password = "$2b$12$zHJadoWbmGtSRZ0fF0i7quB6Y2ys4Wot3wjwKah0/BBaKoqQVzJ2e"
         
         return user
 
