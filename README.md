@@ -12,7 +12,16 @@
 * scemas : reqeust, response model
 * services : 서비스 service
 * utils : util
-
+├── src
+│   ├── flow
+│   │   └── controller
+│   ├── db
+│   ├── http
+│   ├── model
+│   ├── util
+│   └── flow_manager.py
+├── run.sh
+└── main.sh
  app
    │
    ├── app/                                 - 어플리케이션 폴더
