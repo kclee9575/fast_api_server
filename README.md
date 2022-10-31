@@ -12,18 +12,10 @@
 * scemas : reqeust, response model
 * services : 서비스 service
 * utils : util
-├── src
-│   ├── flow
-│   │   └── controller
-│   ├── db
-│   ├── http
-│   ├── model
-│   ├── util
-│   └── flow_manager.py
-├── run.sh
-└── main.sh
- app
-   │
+
+
+
+
    ├── app/                                 - 어플리케이션 폴더
    │   ├── common                           - 공통폴더
    │   │   |── enum                        - enum 타입 정의
@@ -52,7 +44,6 @@
    │   │   ├── http_request.py              - request 관련 util
    │   │   ├── session_context.py           - db session 관련 util
    │   │   ├── timestamp.py                 - 시간 관련 util
-   
    │   ├── test_api.py                      - fast_api 정의
    │ 
    ├── test                                 - 테스트 폴더
